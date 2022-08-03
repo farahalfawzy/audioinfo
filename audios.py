@@ -17,7 +17,7 @@ def audiofiles(path,c,bins):
     
     for filename in glob.glob(os.path.join(path, '*.wav')):
         data, samplerate = sf.read(filename)
-        print(filename)
+        
         
         sf.write('file-2.wav', data, samplerate, subtype='PCM_16')
         #sf.write(filename, data, samplerate, subtype='PCM_16')
