@@ -50,9 +50,12 @@ def generate_csv_file(saveAddr,filename_list,duration_list,samplingrate_list):
 
 
 def generate_histogram(duration_list,bin):
-    plt. hist(duration_list,bins= int(bin))
+    n, bins, edges = plt.hist(duration_list,bins=int(bin),alpha=0.7)
+  
     plt.xlabel("Duration")
     plt.ylabel("Frequency")
+    print(str(max(duration_list))+" "+str(min(duration_list)))
+    plt.xticks(bins)
     plt.show()
     
 if __name__=='__main__':
