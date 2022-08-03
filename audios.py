@@ -5,29 +5,34 @@ import csv
 from itertools import zip_longest
 from matplotlib import pyplot as plt
 import sys
-
-
-    
+import soundfile as sf
 
 
 def audiofiles(path,c,bins):
-    
     if(path=='.'):
         path=os.getcwd()
     duration_list=[]
     filename_list=[]
     samplingrate_list=[]
- 
+    
     for filename in glob.glob(os.path.join(path, '*.wav')):
-        w = wave.open(filename, 'r')
+        data, samplerate = sf.read(filename)
+        print(filename)
+        
+        sf.write('file-2.wav', data, samplerate, subtype='PCM_16')
+        #sf.write(filename, data, samplerate, subtype='PCM_16')
+        
+        w = wave.open('file-2.wav', 'r')
         filename_list.append(Path(filename).stem)
         frames = w.getnframes()
         rate = w.getframerate()
+        
         duration = frames / float(rate)
         duration_list.append(duration)
         samplingrate_list.append(rate)
+        os.remove('file-2.wav')
         w.close()
-
+    
     if(c=='.'):
         saveAddr=os.getcwd()+'/audio-information.csv' 
     else:    
@@ -45,7 +50,7 @@ def generate_csv_file(saveAddr,filename_list,duration_list,samplingrate_list):
 
 
 def generate_histogram(duration_list,bin):
-    plt. hist(duration_list,bins=bin)
+    plt. hist(duration_list,bins= int(bin))
     plt.xlabel("Duration")
     plt.ylabel("Frequency")
     plt.show()
