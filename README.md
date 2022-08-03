@@ -7,3 +7,15 @@ python audios.py . . (bins)
 first '.' indicates that the folder containing the wav files is current directatory and can be changed to a path of another folder 
 second '.' is where the csv will be created ('.' for current directatory or can be changed to another path)
 bins is an integer which is number of bins to be created
+
+
+Libararies to be installed and imported 
+wave 
+os
+glob
+pathlib 
+csv
+itertools 
+matplotlib 
+sys
+soundfile
